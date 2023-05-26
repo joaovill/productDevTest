@@ -1,8 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateProjectDto } from './dto/create-project.dto';
-import { UpdateProjectDto } from './dto/update-project.dto';
 import { Project } from './entities/project.entity';
 
 @Injectable()
@@ -29,15 +28,28 @@ export class ProjectService {
     return await this.prisma.project.findMany({ where: { username } })
   }
 
-  findById(id: string) {
-    return `This action returns a #${id} project`;
+  async findById(id: string, username: string): Promise<Project>{
+    const data = await this.prisma.project.findUnique({ where: { id }})
+
+    if(data.username !== username){
+      throw new UnauthorizedException("You are not the owner of this project")
+    }
+
+    return data 
   }
 
-  update(id: number, updateProjectDto: UpdateProjectDto) {
-    return `This action updates a #${id} project`;
+  async updateToDone(id: string, username: string) {
+    
+    const data = await this.findById(id, username)
+
+    data.done = true
+
+    return this.prisma.project.update({ data, where: { id } })
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} project`;
+  async deleteProject(id: string, username: string) {
+    const data = await this.findById(id, username)
+
+    return this.prisma.project.delete({where: {id}})
   }
 }

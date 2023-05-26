@@ -18,22 +18,22 @@ export class ProjectController {
   @Get('projects')
   findAll(@ActualUser() user: User): Promise<Project[]> {
     const projects = this.projectService.findAllByUsername(user.username);
-    
+
     return projects
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.projectService.findById(id);
+  @Get('project/:id')
+  findOne(@Param('id') id: string,  @ActualUser() user: User) {
+    return this.projectService.findById(id, user.username);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
-    return this.projectService.update(+id, updateProjectDto);
+  @Patch('project/:id/done')
+  update(@Param('id') id: string, @ActualUser() user: User) {
+    return this.projectService.updateToDone(id, user.username);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.projectService.remove(+id);
+  @Delete('project/:id/delete')
+  remove(@Param('id') id: string, @ActualUser() user: User) {
+    return this.projectService.deleteProject(id, user.username);
   }
 }
