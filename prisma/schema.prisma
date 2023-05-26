@@ -16,3 +16,15 @@ model User {
   password    String
   name        String
 }
+
+model Project {
+  id          String @id @default(uuid())
+  title       String
+  zip_code    Int
+  cost        Int
+  done        Boolean
+  deadline    String
+  created_at  String
+  updated_at  String
+  username    String
+}
