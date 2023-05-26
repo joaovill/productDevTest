@@ -42,7 +42,12 @@ export class ProjectService {
     
     const data = await this.findById(id, username)
 
+    if(data.done){
+      throw new Error('Project already done')
+    }
+
     data.done = true
+    data.updated_at = new Date().toISOString()
 
     return this.prisma.project.update({ data, where: { id } })
   }
