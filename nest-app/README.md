@@ -3,7 +3,7 @@
 ## START ##
 
 - Configure '.env' file to get your database info.
-- As default the nest will be running and listening on port 3000
+- As default the nest will be running and listening on port 8000
 - install the dependecies (npm install)
 - make sure the prisma is properly installed and migrate (npx prisma migrate dev --name init)
 - run start (npm run start) for dev watch (npm run start:dev)
