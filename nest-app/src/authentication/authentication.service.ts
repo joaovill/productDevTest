@@ -40,4 +40,8 @@ export class AuthenticationService {
             access_token: jwtToken
         }
     }
+
+    async register(user: User): Promise<AccessToken>{
+        return this.login( await this.userService.create(user))
+    }
 }

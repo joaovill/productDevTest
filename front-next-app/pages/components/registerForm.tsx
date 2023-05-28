@@ -1,4 +1,4 @@
-import { fetchLogin } from '@/utils/authToken';
+import { fetchRegister } from '@/utils/authToken';
 import { usernameMask, nameMask } from '@/utils/validateMasks';
 import { Box, Button, FormControl, TextField } from '@mui/material';
 import { useState } from 'react';
@@ -13,9 +13,9 @@ function RegisterForm ({handleSignUp}: handleSignUp) {
 	const handleSubmit = async (event: any) =>{
 		event.preventDefault()
 		
-		const tokenData = await fetchLogin(username, password);
+		const tokenData = await fetchRegister({name, username, password});
 
-		if(tokenData){
+		if(tokenData.access_token){
 			localStorage.setItem('token', tokenData.access_token);
 			router.push('/')
 		}

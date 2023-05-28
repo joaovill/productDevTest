@@ -12,7 +12,7 @@ function LoginForm ({handleSignUp}: handleSignUp) {
 	const handleSubmit = async (event: any) =>{
 		event.preventDefault()
 		
-		const tokenData = await fetchLogin(username, password);
+		const tokenData = await fetchLogin({username, password});
 
 		if(tokenData.access_token){
 			console.log('tokenData', tokenData)

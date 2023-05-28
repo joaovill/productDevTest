@@ -19,9 +19,23 @@ export async function fetchUserByToken(token: string): Promise<userData> {
 }
 
 
-export async function fetchLogin(username: string, password: string): Promise<AuthToken> {
+export async function fetchLogin(user: fetchUser): Promise<AuthToken> {
 	try {
-		const {data} = await axios.post('http://localhost:8000/login', {username, password});
+		const {data} = await axios.post('http://localhost:8000/login', user);
+
+		return data
+	}catch{
+		return {
+			access_token: ''
+		}
+	}
+}
+
+
+
+export async function fetchRegister(user: registerUser): Promise<AuthToken> {
+	try {
+		const {data} = await axios.post('http://localhost:8000/register', user);
 
 		return data
 	}catch{

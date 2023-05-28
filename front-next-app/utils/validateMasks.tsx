@@ -3,5 +3,9 @@ export const usernameMask = (value: string): string => {
 }
 
 export const nameMask = (value: string): string =>{
-	return value.replace(/^[a-záàâãéèêíïóôõöúçñ]{2,}(\s[a-záàâãéèêíïóôõöúçñ]{2,})+$/i, '')
+	value = value.replace(/[0-9]/g, '')
+	value = value.replace(/[^a-zA-Zà-ú~´^ ]/g, '')
+	value = value.replace('  ', ' ')
+
+	return value
 }

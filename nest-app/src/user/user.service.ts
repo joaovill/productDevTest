@@ -14,7 +14,7 @@ export class UserService {
       ...createUserDto,
       password: await bcrypt.hash(createUserDto.password, 10)
     };
-    
+
     if(await this.findByUsername(data.username)){
       throw new BadRequestException(
         'Account with this username already exists.',
@@ -22,10 +22,9 @@ export class UserService {
     }
 
     const createdUser = await this.prisma.user.create({ data });
-
+    
     return {
-      ...createdUser,
-      password: undefined,
+      ...createdUser
     };
   }
 
