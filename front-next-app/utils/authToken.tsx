@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import Error from "next/error";
 
 export async function fetchUserByToken(token: string): Promise<userData> {
 	try {
@@ -38,9 +39,11 @@ export async function fetchRegister(user: registerUser): Promise<AuthToken> {
 		const {data} = await axios.post('http://localhost:8000/register', user);
 
 		return data
-	}catch{
+	}catch(e: any){
+		console.log(e)
 		return {
-			access_token: ''
+			access_token: '',
+			error: e?.response?.data.message
 		}
 	}
 }
