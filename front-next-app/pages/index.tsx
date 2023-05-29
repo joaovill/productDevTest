@@ -33,6 +33,13 @@ export default function Index() {
     }
   },[])
 
+  const handleGetProjects = (token: string) => {
+    fetchAllProjects(token).then((response) => {
+      console.log(response)
+      setProjects(response.projects)
+    })
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
@@ -40,7 +47,7 @@ export default function Index() {
       </div>
       <div className={styles.containerApp}>
         <div className={styles.navBox}>
-          {<NavDashboard />}
+          {<NavDashboard handleGetProjects={handleGetProjects}/>}
         </div>
         <div className="projectsBox">
           {(projects.length)? 'Projects' : 'No Projects'}

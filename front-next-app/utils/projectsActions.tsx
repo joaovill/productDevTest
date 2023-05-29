@@ -22,16 +22,20 @@ export async function fetchAllProjects(token: string): Promise<ProjectsResponse>
 
 
 export async function fetchCreateProject(dataProject: CreateProject): Promise<ProjectResponse> {
+    console.log(dataProject)
+    const config = {
+        headers: { Authorization: `Bearer ${dataProject.token}` }
+    };
+    const bodyParams = {
+        ...dataProject,
+            token: undefined
+        }
 	try {
-		const {data} = await axios.post('http://localhost:8000/project', {
-			headers: ({
-				Authorization: 'Bearer ' + dataProject.token
-			}),
-            body: {
-                ...dataProject,
-                token: undefined
-            }
-		});
+		const {data} = await axios.post(
+            'http://localhost:8000/project', 
+            bodyParams,
+			config
+		);
 
 		return {
             project: data
