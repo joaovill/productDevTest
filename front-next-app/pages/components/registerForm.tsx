@@ -24,8 +24,6 @@ function RegisterForm ({handleSignUp}: handleSignUp) {
 		
 		const tokenData = await fetchRegister({name, username, password});
 
-		console.log(tokenData)
-
 		if(tokenData.access_token){
 			localStorage.setItem('token', tokenData.access_token);
 			router.push('/')

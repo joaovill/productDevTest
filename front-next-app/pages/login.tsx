@@ -1,4 +1,4 @@
-import { middlewareLogged } from "./_middlewareLogged";
+import { middlewareLogged } from "../utils/_middlewareLogged";
 import { useEffect, useState } from "react";
 import LoginForm from "./components/loginForm";
 import { useRouter } from 'next/router';
@@ -7,7 +7,10 @@ import RegisterForm from "./components/registerForm";
 function Login() {
 
   const router  = useRouter()
-
+  /* 
+  This Effect checks if Token, 
+  if this client have a valid Token automatically send the user to Index Route
+  */
   useEffect(() => {
     const authToken = localStorage.getItem('token');
 
@@ -28,7 +31,7 @@ function Login() {
 	}
 
   return (
-    <main className="">
+    <main className="login-page">
       {(isLogin) ? <LoginForm handleSignUp={handleSignUp} /> : <RegisterForm handleSignUp={handleSignUp} />}
     </main>
   )

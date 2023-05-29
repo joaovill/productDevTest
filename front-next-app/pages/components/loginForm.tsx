@@ -6,8 +6,11 @@ import { useRouter } from 'next/router';
 
 function LoginForm ({handleSignUp}: handleSignUp) {
 	const router = useRouter()
+
 	const [username, setUsername] = useState<string>("")
 	const [password, setPassword] = useState<string>("")
+
+	const [errorMsg, setErrorMsg] = useState<string>("")
 
 	const handleSubmit = async (event: any) =>{
 		event.preventDefault()
@@ -18,6 +21,8 @@ function LoginForm ({handleSignUp}: handleSignUp) {
 			console.log('tokenData', tokenData)
 			localStorage.setItem('token', tokenData.access_token);
 			router.push('/')
+		}else if(tokenData.error){
+			setErrorMsg(tokenData.error)
 		}
 	}
 
@@ -30,6 +35,8 @@ function LoginForm ({handleSignUp}: handleSignUp) {
 					
 					<Button type='submit'>Log In</Button>
 					<Button onClick={() => { handleSignUp(false) }}>Sign Up</Button>
+
+					{errorMsg}
 				</FormControl>
 			</form>
 		</Box>

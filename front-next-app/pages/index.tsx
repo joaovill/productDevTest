@@ -1,12 +1,37 @@
+import { useEffect, useState } from "react";
+import { middlewareLogged } from "../utils/_middlewareLogged";
+import { useRouter } from "next/router";
+import { fetchAllProjects } from "@/utils/projectsActions";
+
 export default function Index() {
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-          <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-            Get started by editing&nbsp;
-            <code className="font-mono font-bold">abubublé</code>
-          </p>
-        </div>
-      </main>
-    )
-  }
+  
+  const router  = useRouter()
+  const [projects, setProjects] = useState<Project[]>([])
+  /* 
+  This Effect checks if Token and verify if the token still valid,
+  if not the user will be redirected to the login Route 
+  */
+  useEffect(() => {
+    const authToken = localStorage.getItem('token');
+    if(authToken){
+      middlewareLogged(authToken).then((res) =>{
+        if(!res){
+          router.push('/login')
+        }else{
+          fetchAllProjects(authToken).then((response) => {
+            console.log('response', response)
+            setProjects(response.projects)
+          })
+        }
+      })
+    }else{
+      router.push('/login')
+    }
+  },[])
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      
+    </main>
+  )
+}

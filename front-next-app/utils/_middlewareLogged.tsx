@@ -4,7 +4,7 @@ export async function middlewareLogged(token: string) {
   const data = await fetchUserByToken(token)
   
   if(data.username){
-    return true
+    return data
   }else{
     return false;
   }

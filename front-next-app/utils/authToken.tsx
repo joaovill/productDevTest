@@ -25,9 +25,10 @@ export async function fetchLogin(user: fetchUser): Promise<AuthToken> {
 		const {data} = await axios.post('http://localhost:8000/login', user);
 
 		return data
-	}catch{
+	}catch(e: any){
 		return {
-			access_token: ''
+			access_token: '',
+			error: e.response?.data?.message
 		}
 	}
 }
