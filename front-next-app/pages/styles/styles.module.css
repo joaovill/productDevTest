@@ -1,0 +1,7 @@
+.containerApp{
+    display: flex;
+    flex-wrap: wrap;
+}
+.containerApp .navBox{
+    flex: 0 30%;
+}
