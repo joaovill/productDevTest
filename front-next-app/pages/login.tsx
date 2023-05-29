@@ -1,8 +1,8 @@
 import { middlewareLogged } from "../utils/_middlewareLogged";
 import { useEffect, useState } from "react";
-import LoginForm from "./components/loginForm";
+import LoginForm from "./components/LoginForm";
 import { useRouter } from 'next/router';
-import RegisterForm from "./components/registerForm";
+import RegisterForm from "./components/RegisterForm";
 
 function Login() {
 

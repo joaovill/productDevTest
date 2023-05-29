@@ -8,6 +8,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { zipCodeMask, nameMask, priceMask } from '@/utils/validateMasks';
 import { fetchCreateProject } from '@/utils/projectsActions';
 
+import styles from '../styles/projectForm.module.css';
+
 function ProjectForm ({handleOpen, handleGetProjects}: handleProjectFormActions) {
 	const router = useRouter()
 
@@ -72,20 +74,22 @@ function ProjectForm ({handleOpen, handleGetProjects}: handleProjectFormActions)
 	}
 
 	return (
-		<Box component="div" sx={{ p: 2, border: '1px dashed grey' }}>
-			<form onSubmit={handleSubmit}>
-				<FormControl>
-					<div>
+		<Box>
+			<form className={styles.projectForm} onSubmit={handleSubmit}>
+				<FormControl fullWidth={true}>
+					<div className={styles.formItem}>
 						<TextField
 							onBlur={ e => { handleValidateTitle(e.target.value) } }
 							onChange={ e => { setTitle(nameMask(e.target.value))} }
 							value={title} required id="outlined-title"
 							label="Title" variant="outlined"
 							type='text' placeholder='Title'
+							inputProps={{ maxLength: 18 }}
+							fullWidth
 						/>
-						{errorTitle && <span className='error-msg'>Please fill a Title.</span>}
+						{errorTitle && <span className={styles.errorMsg}>Please fill a Title.</span>}
 					</div>
-					<div>
+					<div className={styles.formItem}>
 						<TextField 
 							onBlur={ e => { handleValidateZipCode(e.target.value) } } 
 							onChange={ e => { setZipCode(zipCodeMask(e.target.value))} } 
@@ -93,10 +97,11 @@ function ProjectForm ({handleOpen, handleGetProjects}: handleProjectFormActions)
 							label="Zip Code" variant="outlined" 
 							placeholder='Zip Code' 
 							inputProps={{ maxLength: 9 }}
+							fullWidth
 						/>
-						{errorZipCode && <span className='error-msg'>The zipCode must be in this shape (00000-000).</span>}
+						{errorZipCode && <span className={styles.errorMsg}>The zipCode must be in this shape (00000-000).</span>}
 					</div>
-					<div>
+					<div className={styles.formItem}>
 					<TextField 
 							onBlur={ e => { handleValidateCost(e.target.value) } } 
 							onChange={ e => { setCost(priceMask(e.target.value))} } 
@@ -104,18 +109,19 @@ function ProjectForm ({handleOpen, handleGetProjects}: handleProjectFormActions)
 							label="Cost" variant="outlined" 
 							placeholder='Cost' 
 							inputProps={{ maxLength: 15 }}
+							fullWidth
 						/>
-						{errorCost && <span className='error-msg'> The minimun budget is $ 1000. </span>}
+						{errorCost && <span className={styles.errorMsg}> The minimun budget is $ 1000. </span>}
 					</div>
-					<div>
+					<div className={styles.formItem}>
 					<LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker value={deadline} onChange={ (e: any) => { setDate(e.$d.toISOString()) }}/>
+						<DatePicker value={deadline} onChange={ (e: any) => { setDate(e.$d.toISOString()) }}/>
 					</LocalizationProvider>
-						{errorDate && <span className='error-msg'> Date Error. </span>}
+						{errorDate && <span className={styles.errorMsg}> Date Error. </span>}
 					</div>
 					
 					<Button type='submit' disabled={handleDisable()} >CreateProject</Button>
-					{errorMsg}
+					{errorMsg && <span className={styles.errorMsg}>{errorMsg}</span>}
 				</FormControl>
 			</form>
 		</Box>

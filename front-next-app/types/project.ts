@@ -27,3 +27,17 @@ interface CreateProject {
     cost: number;
     deadline: string;
 }
+
+
+interface UpdateProject {
+    token: string;
+    id: string;
+}
+
+interface ProjectResponseWithGet extends ProjectResponse {
+    handleGetProjects: (token: string) => void
+}
+
+interface ProjectsResponseWithGet extends ProjectsResponse {
+    handleGetProjects: (token: string) => void
+}

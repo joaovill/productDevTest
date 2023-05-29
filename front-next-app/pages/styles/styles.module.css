@@ -1,7 +1,20 @@
 .containerApp{
     display: flex;
     flex-wrap: wrap;
+    height: 100%;
 }
 .containerApp .navBox{
-    flex: 0 30%;
+    background-color: var(--quartz);
+    border-right: 1px solid var(--secondaryBlack);
+    flex: 0 calc(30% - 1px);
+}
+.projectsBox{
+    flex: 0 calc(70% - 32px);
+    padding: 0 16px;
+}
+.greetingMessage{
+    background-color: var(--black);
+    box-shadow: 0px 0px 8px 0px #000;
+    color: var(--white);
+    padding: 8px 10px;
 }

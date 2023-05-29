@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { middlewareLogged } from "../utils/_middlewareLogged";
 import { useRouter } from "next/router";
 import { fetchAllProjects } from "@/utils/projectsActions";
-import NavDashboard from "./components/navDashboard";
+import NavDashboard from "./components/NavDashboard";
+import ProjectList from "./components/ProjectList";
 import styles from './styles/styles.module.css';
 
 export default function Index() {
@@ -23,7 +24,6 @@ export default function Index() {
         }else{
           setUser({...res})
           fetchAllProjects(authToken).then((response) => {
-            console.log('response', response)
             setProjects(response.projects)
           })
         }
@@ -42,15 +42,15 @@ export default function Index() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
+      <div className={styles.greetingMessage}>
         Hello {user.name}, Welcome to your Project Management APP! 
       </div>
       <div className={styles.containerApp}>
         <div className={styles.navBox}>
           {<NavDashboard handleGetProjects={handleGetProjects}/>}
         </div>
-        <div className="projectsBox">
-          {(projects.length)? 'Projects' : 'No Projects'}
+        <div className={styles.projectsBox}>
+          {(projects.length)? <ProjectList projects={projects} handleGetProjects={handleGetProjects}/> : 'No Projects'}
         </div>
       </div>
     </main>

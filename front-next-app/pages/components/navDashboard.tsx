@@ -1,6 +1,6 @@
 
 import { Box, Button, Modal } from '@mui/material';
-import ProjectForm from './projectForm';
+import ProjectForm from './ProjectForm';
 import { useState } from 'react';
 import styles from '../styles/navDashboard.module.css'
 

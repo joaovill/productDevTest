@@ -1,0 +1,10 @@
+.projectForm{
+    padding: 0 10px 20px;
+}
+.projectForm .formItem{
+    margin: 5px 0;
+}
+.projectForm .errorMsg{
+    color: red;
+    font-size: 12px;
+}
