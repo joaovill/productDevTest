@@ -5,7 +5,7 @@ import { Box, Button, FormControl, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
-import { zipCodeMask, nameMask, priceMask } from '@/utils/validateMasks';
+import { zipCodeMask, titleMask, priceMask } from '@/utils/validateMasks';
 import { fetchCreateProject } from '@/utils/projectsActions';
 
 import styles from '../styles/projectForm.module.css';
@@ -76,11 +76,11 @@ function ProjectForm ({handleOpen, handleGetProjects}: handleProjectFormActions)
 	return (
 		<Box>
 			<form className={styles.projectForm} onSubmit={handleSubmit}>
-				<FormControl fullWidth={true}>
+				<FormControl>
 					<div className={styles.formItem}>
 						<TextField
 							onBlur={ e => { handleValidateTitle(e.target.value) } }
-							onChange={ e => { setTitle(nameMask(e.target.value))} }
+							onChange={ e => { setTitle(titleMask(e.target.value))} }
 							value={title} required id="outlined-title"
 							label="Title" variant="outlined"
 							type='text' placeholder='Title'

@@ -1,7 +1,10 @@
 
-import { Box, Button, Modal } from '@mui/material';
-import ProjectForm from './ProjectForm';
 import { useState } from 'react';
+
+import { Box, Button, Modal } from '@mui/material';
+
+import ProjectForm from './ProjectForm';
+
 import styles from '../styles/navDashboard.module.css'
 
 function NavDashboard ({handleGetProjects}: getProjects) {

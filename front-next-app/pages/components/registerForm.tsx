@@ -1,8 +1,12 @@
-import { fetchRegister } from '@/utils/authToken';
-import { usernameMask, nameMask } from '@/utils/validateMasks';
-import { Box, Button, FormControl, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+
+import { Button, FormControl, TextField } from '@mui/material';
+
+import { fetchRegister } from '@/utils/authToken';
+import { usernameMask, nameMask } from '@/utils/validateMasks';
+
+import styles from '../styles/login.module.css';
 
 function RegisterForm ({handleSignUp}: handleSignUp) {
 	const router = useRouter()
@@ -60,64 +64,66 @@ function RegisterForm ({handleSignUp}: handleSignUp) {
 	}
 
 	return (
-		<Box >
-			<form onSubmit={handleSubmit}>
-				<FormControl>
-					<div>
-						<TextField
-							onBlur={ e => { handleValidateName(e.target.value) } }
-							onChange={ e => { setName(nameMask(e.target.value))} }
-							value={name} required id="outlined-name"
-							label="Name" variant="outlined"
-							type='text' placeholder='Name'
-						/>
-						{errorName && <span className='error-msg'>Please fill with Fullname.</span>}
-					</div>
-					<div>
-						<TextField 
-							onBlur={ e => { handleValidateUsername(e.target.value) } } 
-							onChange={ e => { setUsername(usernameMask(e.target.value))} } 
-							value={username} required id="outlined-user" 
-							label="Username" variant="outlined" 
-							placeholder='Username' 
-							inputProps={{ maxLength: 12 }}
-						/>
-						{errorUsername && <span className='error-msg'>The username must have at least 8 characters (only letters and ". - _") will be accepted.</span>}
-					</div>
-					<div>
-						<TextField
-							onBlur={ e => { handleValidatePassword(e.target.value) } }
-							onChange={ e => { setPassword(e.target.value)} }
-							value={password} required id="outlined-pass"
-							label="Password" variant="outlined"
-							type='password' placeholder='Password'
-						/>
-						{errorPassword && 
-							<span className='error-msg'>
-								Password must contain: 
-								<span>
-								- must be 8 digits length.
-								</span>
-								<span>
-								- at least a Uppercase letter.
-								</span>
-								<span>
-								- at least a lowercase letter.
-								</span>
-								<span>
-								- at least a special character.
-								</span>
+		<form className={styles.loginForm} onSubmit={handleSubmit}>
+			<FormControl fullWidth>
+				<div className={styles.formItem}>
+					<TextField
+						onBlur={ e => { handleValidateName(e.target.value) } }
+						onChange={ e => { setName(nameMask(e.target.value))} }
+						value={name} required id="outlined-name"
+						label="Name" variant="outlined"
+						type='text' placeholder='Name'
+						fullWidth
+					/>
+					{errorName && <span className={styles.errorMsg}>Please fill with Fullname.</span>}
+				</div>
+				<div>
+					<TextField 
+						onBlur={ e => { handleValidateUsername(e.target.value) } } 
+						onChange={ e => { setUsername(usernameMask(e.target.value))} } 
+						value={username} required id="outlined-user" 
+						label="Username" variant="outlined" 
+						placeholder='Username' 
+						inputProps={{ maxLength: 12 }}
+						fullWidth
+					/>
+					{errorUsername && <span className={styles.errorMsg}>The username must have at least 8 characters (only letters and ". - _") will be accepted.</span>}
+				</div>
+				<div>
+					<TextField
+						onBlur={ e => { handleValidatePassword(e.target.value) } }
+						onChange={ e => { setPassword(e.target.value)} }
+						value={password} required id="outlined-pass"
+						label="Password" variant="outlined"
+						type='password' placeholder='Password'
+						fullWidth
+					/>
+					{errorPassword && 
+						<span className={styles.errorMsg}>
+							Password must contain: 
+							<span>
+							- must be 8 digits length.
 							</span>
-							}
-					</div>
-					
-					<Button onClick={() => { handleSignUp(true) }}>Back</Button>
+							<span>
+							- at least a Uppercase letter.
+							</span>
+							<span>
+							- at least a lowercase letter.
+							</span>
+							<span>
+							- at least a special character.
+							</span>
+						</span>
+						}
+				</div>
+				<div className={styles.buttonsLogin}>
+					<Button color='secondary' onClick={() => { handleSignUp(true) }}>Back</Button>
 					<Button type='submit' disabled={handleDisable()} >Sign Up</Button>
+				</div>
 
-					{errorMsg}
-				</FormControl>
-			</form>
-		</Box>
+				{errorMsg && <span className={styles.errorMsg}>{errorMsg}</span>}
+			</FormControl>
+		</form>
 	)
 }
 

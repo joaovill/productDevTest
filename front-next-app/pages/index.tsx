@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { middlewareLogged } from "../utils/_middlewareLogged";
 import { useRouter } from "next/router";
+
+import { middlewareLogged } from "../utils/_middlewareLogged";
 import { fetchAllProjects } from "@/utils/projectsActions";
+
 import NavDashboard from "./components/NavDashboard";
 import ProjectList from "./components/ProjectList";
+
 import styles from './styles/styles.module.css';
 
 export default function Index() {

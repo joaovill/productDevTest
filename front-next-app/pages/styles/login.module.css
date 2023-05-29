@@ -1,0 +1,32 @@
+.loginForm{
+    padding: 8px 10px 20px;
+}
+.loginForm .buttonsLogin{
+    display: flex;
+    justify-content: space-between;
+}
+.loginForm .formItem{
+    margin: 5px 0;
+}
+.loginForm .errorMsg{
+    color: red;
+    display: block;
+    font-size: 12px;
+    max-width: 250px;
+    margin: 0;
+}
+.titleLogin{
+    background-color: var(--black);
+    color: var(--white);
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 8px 20px;
+    text-align: center;
+}
+.boxForms{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

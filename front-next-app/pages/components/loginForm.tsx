@@ -1,8 +1,12 @@
-import { fetchLogin } from '@/utils/authToken';
-import { usernameMask } from '@/utils/validateMasks';
-import { Box, Button, FormControl, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+
+import { Button, FormControl, TextField } from '@mui/material';
+
+import { fetchLogin } from '@/utils/authToken';
+import { usernameMask } from '@/utils/validateMasks';
+
+import styles from '../styles/login.module.css';
 
 function LoginForm ({handleSignUp}: handleSignUp) {
 	const router = useRouter()
@@ -27,19 +31,23 @@ function LoginForm ({handleSignUp}: handleSignUp) {
 	}
 
 	return (
-		<Box component="div" sx={{ p: 2, border: '1px dashed grey' }}>
-			<form onSubmit={handleSubmit}>
-				<FormControl>
-					<TextField onChange={ e => { setUsername(usernameMask(e.target.value))} } value={username} required id="outlined-user" label="Username" variant="outlined" placeholder='Username'/>
-					<TextField onChange={ e => { setPassword(e.target.value)} } value={password} required id="outlined-pass" label="Password" variant="outlined" type='password' placeholder='Password' />
+			<form className={styles.loginForm} onSubmit={handleSubmit}>
+				<FormControl fullWidth>
+					<div className={styles.formItem}>
+						<TextField onChange={ e => { setUsername(usernameMask(e.target.value))} } value={username} required id="outlined-user" label="Username" variant="outlined" placeholder='Username' fullWidth/>
+					</div>
+					<div className={styles.formItem}>
+						<TextField onChange={ e => { setPassword(e.target.value)} } value={password} required id="outlined-pass" label="Password" variant="outlined" type='password' placeholder='Password' fullWidth/>
+					</div>
 					
-					<Button type='submit'>Log In</Button>
-					<Button onClick={() => { handleSignUp(false) }}>Sign Up</Button>
+					<div className={styles.buttonsLogin}>
+						<Button type='submit'>Log In</Button>
+						<Button onClick={() => { handleSignUp(false) }}>Sign Up</Button>
+					</div>
 
-					{errorMsg}
+					{errorMsg && <span className={styles.errorMsg}>{errorMsg}</span>}
 				</FormControl>
 			</form>
-		</Box>
 	)
 }
 

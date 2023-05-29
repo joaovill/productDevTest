@@ -1,8 +1,13 @@
-import { middlewareLogged } from "../utils/_middlewareLogged";
 import { useEffect, useState } from "react";
-import LoginForm from "./components/LoginForm";
 import { useRouter } from 'next/router';
+
+import { middlewareLogged } from "../utils/_middlewareLogged";
+
+import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
+
+import styles from './styles/login.module.css';
+import { Card } from "@mui/material";
 
 function Login() {
 
@@ -32,7 +37,14 @@ function Login() {
 
   return (
     <main className="login-page">
-      {(isLogin) ? <LoginForm handleSignUp={handleSignUp} /> : <RegisterForm handleSignUp={handleSignUp} />}
+      <div className={styles.boxForms}>
+        <Card>
+          <div className={styles.titleLogin}>
+            <span>PROJECT MANAGEMENT</span>
+          </div>
+          {(isLogin) ? <LoginForm handleSignUp={handleSignUp} /> : <RegisterForm handleSignUp={handleSignUp} />}
+        </Card>
+      </div>
     </main>
   )
 }

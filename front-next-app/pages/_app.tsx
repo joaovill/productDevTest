@@ -40,6 +40,11 @@ export default function App ({ Component, pageProps}: AppProps){
                 --white: #F4F7F5;
                 --gray: #575A5E;
             }
+            :disabled{
+                border: 1px dotted #000!important;
+                background: gray !important;
+                color: #c0c0c0 !important;
+            }
             `
             }/>
             <ThemeProvider theme={theme}>

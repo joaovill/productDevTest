@@ -10,6 +10,14 @@ export const nameMask = (value: string): string =>{
 	return value
 }
 
+export const titleMask = (value: string): string =>{
+	value = value.replace(/[^a-zA-Zà-ú~´^ ]/g, '')
+	value = value.replace('  ', ' ')
+
+	return value
+}
+
+
 export const zipCodeMask = (value: string) => {
 	if (!value) return ""
 	value = value.replace(/\D/g,'')

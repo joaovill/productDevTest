@@ -1,8 +1,9 @@
 import { Button, Card } from '@mui/material';
 
 import { priceMask, zipCodeMask } from '@/utils/validateMasks';
-import styles from '../styles/projectCard.module.css';
 import { fetchDeleteProject, fetchUpdateProject } from '@/utils/projectsActions';
+
+import styles from '../styles/projectCard.module.css';
 
 function ProjectCard ({project, handleGetProjects}: ProjectResponseWithGet) {
 
