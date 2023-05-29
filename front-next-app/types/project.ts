@@ -14,3 +14,16 @@ interface ProjectsResponse {
     projects: Project[];
     error?: string;
 }
+
+interface ProjectResponse {
+    project: Project;
+    error?: string;
+}
+
+interface CreateProject {
+    token: string;
+    title: string;
+    zip_code: number;
+    cost: number;
+    deadline: string;
+}

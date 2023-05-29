@@ -60,7 +60,7 @@ function RegisterForm ({handleSignUp}: handleSignUp) {
 	}
 
 	return (
-		<Box component="div" sx={{ p: 2, border: '1px dashed grey' }}>
+		<Box >
 			<form onSubmit={handleSubmit}>
 				<FormControl>
 					<div>

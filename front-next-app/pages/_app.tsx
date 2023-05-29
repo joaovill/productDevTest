@@ -8,10 +8,18 @@ export default function App ({ Component, pageProps}: AppProps){
             <Global styles={css` 
             /* styles */
             body {
-                padding: 0;
+                font-family: "Roboto","Helvetica","Arial",sans-serif;
                 margin: 0;
+                padding: 0;
             }
             
+            :root {
+                --black: #08090A;
+                --secondaryBlack: #222823;
+                --quartz: #A7A2A9;
+                --white: #F4F7F5;
+                --gray: #575A5E;
+            }
             `
             }/>
             <Component {...pageProps} />
