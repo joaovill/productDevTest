@@ -15,16 +15,25 @@ model User {
   username    String @unique
   password    String
   name        String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model Project {
-  id          String @id @default(uuid())
+model Product {
+  id          String   @id @default(uuid())
   title       String
-  zip_code    Int
-  cost        Int
-  done        Boolean
-  deadline    String
-  created_at  String
-  updated_at  String
-  username    String
+  description String
+  listPrice   Float
+  stock       Int
+  images      String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  orders      Order[]  @relation("OrderProducts")
+}
+
+model Order {
+  id         String   @id @default(uuid())
+  products   Product[] @relation("OrderProducts")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

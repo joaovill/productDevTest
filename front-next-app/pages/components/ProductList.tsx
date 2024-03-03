@@ -1,10 +1,10 @@
 import { Button } from '@mui/material';
 import { useState } from 'react';
 
-import ProjectCard from './ProjectCard';
+import ProductCard from './ProductCard';
 import styles from '../styles/projectList.module.css';
 
-function ProjectList ({projects, handleGetProjects}: ProjectsResponseWithGet) {
+function ProductList ({products, handleGetProducts}: ProductsResponseWithGet) {
 	const [isDone, setIsDone] = useState<boolean>(false)
 
 	const handleIsDone = (arg: boolean) => {
@@ -19,10 +19,8 @@ function ProjectList ({projects, handleGetProjects}: ProjectsResponseWithGet) {
 			</div>
 			<div className={styles.projectBox}>
 				{
-					projects.map((project: Project) =>{
-						if(isDone === project.done){
-							return <ProjectCard handleGetProjects={handleGetProjects} project={project} />
-						}
+					products.map((project: Product) =>{
+							return <ProductCard handleGetProducts={handleGetProducts} product={product} />
 					})
 				}
 			</div>

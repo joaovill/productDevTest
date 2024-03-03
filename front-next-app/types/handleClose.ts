@@ -1,8 +1,8 @@
-interface handleProjectFormActions {
+interface handleProductFormActions {
 	handleOpen: (arg: boolean) => void
-	handleGetProjects: (token: string) => void
+	handleGetProducts: (token: string) => void
 }
 
-interface getProjects {
-    handleGetProjects: (token: string) => void
+interface getProducts {
+    handleGetProducts: (token: string) => void
 }

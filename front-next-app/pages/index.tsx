@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { middlewareLogged } from "../utils/_middlewareLogged";
-import { fetchAllProjects } from "@/utils/projectsActions";
+import { fetchAllProducts } from "@/utils/productActions";
 
 import NavDashboard from "./components/NavDashboard";
-import ProjectList from "./components/ProjectList";
+import ProductList from "./components/ProductList";
 
 import styles from './styles/styles.module.css';
 
 export default function Index() {
   
   const router  = useRouter()
-  const [projects, setProjects] = useState<Project[]>([])
+  const [products, setProducts] = useState<Product[]>([])
   const [user, setUser] = useState<userData>({id: '', username: '', name: ''})
   /* 
   This Effect checks if Token and verify if the token still valid,
@@ -26,8 +26,8 @@ export default function Index() {
           router.push('/login')
         }else{
           setUser({...res})
-          fetchAllProjects(authToken).then((response) => {
-            setProjects(response.projects)
+          fetchAllProducts(authToken).then((response) => {
+            setProducts(response.products)
           })
         }
       })
@@ -36,10 +36,10 @@ export default function Index() {
     }
   },[])
 
-  const handleGetProjects = (token: string) => {
-    fetchAllProjects(token).then((response) => {
+  const handleGetProducts = (token: string) => {
+    fetchAllProducts(token).then((response) => {
       console.log(response)
-      setProjects(response.projects)
+      setProducts(response.products)
     })
   }
 
@@ -50,10 +50,10 @@ export default function Index() {
       </div>
       <div className={styles.containerApp}>
         <div className={styles.navBox}>
-          {<NavDashboard handleGetProjects={handleGetProjects}/>}
+          {<NavDashboard handleGetProducts={handleGetProducts}/>}
         </div>
         <div className={styles.projectsBox}>
-          {(projects.length)? <ProjectList projects={projects} handleGetProjects={handleGetProjects}/> : 'No Projects'}
+          {(products.length)? <ProductList products={products} handleGetProducts={handleGetProducts}/> : 'No Products'}
         </div>
       </div>
     </main>
