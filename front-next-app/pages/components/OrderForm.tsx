@@ -55,7 +55,7 @@ function OrderForm({products, handleOpen, handleGetOrders}: handleOrderFormActio
             </Box>
           )}
         >
-          {products.map((product) => (
+          {products && products.map((product) => (
             <MenuItem
               key={product.id}
               value={product.id}

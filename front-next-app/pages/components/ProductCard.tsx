@@ -38,6 +38,7 @@ function ProductCard ({product, handleGetProducts}: ProductResponseWithGet) {
 	}
 
 	return (
+		product &&
 		<div className={styles.productCard}>
 			<Card>
 				<div className={styles.customCard}>

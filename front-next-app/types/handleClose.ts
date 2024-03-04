@@ -2,8 +2,9 @@ interface handleProductFormActions {
 	handleOpen: (arg: boolean) => void
 	handleGetProducts: (token: string) => void
 }
-interface handleOrderFormActions extends handleProductFormActions {
+interface handleOrderFormActions {
 	products: Product[]
+	handleOpen: (arg: boolean) => void
 	handleGetOrders: (token: string) => void
 }
 

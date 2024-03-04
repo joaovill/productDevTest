@@ -44,7 +44,7 @@ export default function Index() {
     }else{
       router.push('/login')
     }
-  },[])
+  },[router])
 
   const handleGetProducts = (token: string) => {
     fetchAllProducts(token).then((response) => {

@@ -87,7 +87,7 @@ function RegisterForm ({handleSignUp}: handleSignUp) {
 						inputProps={{ maxLength: 12 }}
 						fullWidth
 					/>
-					{errorUsername && <span className={styles.errorMsg}>The username must have at least 8 characters (only letters and ". - _") will be accepted.</span>}
+					{errorUsername && <span className={styles.errorMsg}>The username must have at least 8 characters (only letters and . - _) will be accepted.</span>}
 				</div>
 				<div>
 					<TextField

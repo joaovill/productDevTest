@@ -27,7 +27,7 @@ function Login() {
         }
       })
     }
-  },[])
+  },[router])
 
   const [isLogin, setIsLogin] = useState<boolean>(true)
 

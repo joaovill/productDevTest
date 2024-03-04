@@ -39,6 +39,7 @@ function OrderCard ({order, handleGetOrders}: OrderResponseWithGet) {
 	} 
 
 	return (
+		order &&
 		<div className={styles.productCard}>
 			<Card>
 				<div className={styles.customCard}>
