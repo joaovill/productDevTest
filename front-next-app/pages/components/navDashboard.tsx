@@ -40,4 +40,5 @@ function NavDashboard ({handleGetOrders, handleGetProducts, products}: getProduc
 	)
 }
 
+
 export default NavDashboard
