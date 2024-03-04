@@ -46,13 +46,13 @@ export default function Index() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className={styles.greetingMessage}>
-        Hello {user.name}, Welcome to your Project Management APP! 
+        Hello {user.name}, Welcome to your Product Management APP! 
       </div>
       <div className={styles.containerApp}>
         <div className={styles.navBox}>
           {<NavDashboard handleGetProducts={handleGetProducts}/>}
         </div>
-        <div className={styles.projectsBox}>
+        <div className={styles.productsBox}>
           {(products.length)? <ProductList products={products} handleGetProducts={handleGetProducts}/> : 'No Products'}
         </div>
       </div>

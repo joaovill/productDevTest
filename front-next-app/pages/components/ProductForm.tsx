@@ -6,7 +6,7 @@ import { Box, Button, FormControl, TextField } from '@mui/material';
 import { titleMask, priceMask } from '@/utils/validateMasks';
 import { fetchCreateProduct } from '@/utils/productActions';
 
-import styles from '../styles/projectForm.module.css';
+import styles from '../styles/productForm.module.css';
 
 function ProductForm ({handleOpen, handleGetProducts}: handleProductFormActions) {
 	const router = useRouter()
@@ -35,8 +35,8 @@ function ProductForm ({handleOpen, handleGetProducts}: handleProductFormActions)
 		const tokenData = localStorage.getItem('token');
 		if (tokenData) {
 			const formData = new FormData();
-			const formattedListPrice = listPrice.replace(/[^0-9,.]+/g, '').replace(',', '.');
-			
+			const formattedListPrice = listPrice.replace(/\D/g,'');
+
 			formData.append('title', title);
 			formData.append('description', description);
 			formData.append('listPrice', formattedListPrice);
@@ -96,7 +96,7 @@ function ProductForm ({handleOpen, handleGetProducts}: handleProductFormActions)
 
 	return (
 		<Box>
-			<form className={styles.projectForm} onSubmit={handleSubmit}>
+			<form className={styles.productForm} onSubmit={handleSubmit}>
 				<FormControl>
 					<div className={styles.formItem}>
 						<TextField
@@ -167,7 +167,7 @@ function ProductForm ({handleOpen, handleGetProducts}: handleProductFormActions)
 						)}
                 	</div>
 					
-					<Button type='submit' disabled={handleDisable()} >CreateProject</Button>
+					<Button type='submit' disabled={handleDisable()} >Create Product</Button>
 					{errorMsg && <span className={styles.errorMsg}>{errorMsg}</span>}
 				</FormControl>
 			</form>

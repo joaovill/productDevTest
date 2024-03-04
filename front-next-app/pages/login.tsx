@@ -40,7 +40,7 @@ function Login() {
       <div className={styles.boxForms}>
         <Card>
           <div className={styles.titleLogin}>
-            <span>PROJECT MANAGEMENT</span>
+            <span>PRODUCT MANAGEMENT</span>
           </div>
           {(isLogin) ? <LoginForm handleSignUp={handleSignUp} /> : <RegisterForm handleSignUp={handleSignUp} />}
         </Card>

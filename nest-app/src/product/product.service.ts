@@ -9,10 +9,12 @@ import { Product } from './entities/product.entity';
 export class ProductService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async findAll() {
+    return this.prisma.product.findMany();
+  }
+
   async create(createProductDto: CreateProductDto): Promise<Product> {
 
-    console.log(typeof createProductDto.listPrice)
-    console.log(typeof createProductDto.stock)
     const formattedListPrice = parseFloat(createProductDto.listPrice.toString());
     const formattedStock = parseInt(createProductDto.stock.toString());
 
@@ -24,10 +26,10 @@ export class ProductService {
       updatedAt: new Date().toISOString()
     };
 
-    const createdProject = await this.prisma.product.create({ data });
+    const createdProduct = await this.prisma.product.create({ data });
 
     return {
-      ...createdProject
+      ...createdProduct
     };
   }
 
@@ -38,7 +40,7 @@ export class ProductService {
   }
 
 
-  async deleteProject(id: string) {
+  async deleteProduct(id: string) {
     const data = await this.findById(id)
 
     return this.prisma.product.delete({where: {id}})

@@ -8,7 +8,7 @@
     border-right: 1px solid var(--secondaryBlack);
     flex: 0 calc(30% - 1px);
 }
-.projectsBox{
+.productsBox{
     flex: 0 calc(70% - 32px);
     padding: 0 16px;
 }

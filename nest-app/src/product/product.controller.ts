@@ -7,14 +7,20 @@ import { User } from 'src/user/entities/user.entity';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from '../config/multer.config';
 
-@Controller('product')
+@Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
+
+  @Get()
+  findAll(@ActualUser() user: User) {
+    return this.productService.findAll();
+  }
 
   @Post()
   @UseInterceptors(FilesInterceptor('images', 4, multerConfig)) 
   create(@UploadedFiles() images: Array<Express.Multer.File>, @Body() createProductDto: CreateProductDto, @ActualUser() user: User) {
-    const imagePaths = images.map(file => file.path);
+    console.log(createProductDto);
+    const imagePaths = images.map(file => file.path.replace(/\\/g, '/'))
 
     return this.productService.create({ ...createProductDto, images: imagePaths });
   }
@@ -31,6 +37,6 @@ export class ProductController {
 
   @Delete('/:id/delete')
   remove(@Param('id') id: string, @ActualUser() user: User) {
-    return this.productService.deleteProject(id);
+    return this.productService.deleteProduct(id);
   }
 }

@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import { useState } from 'react';
 
 import ProductCard from './ProductCard';
-import styles from '../styles/projectList.module.css';
+import styles from '../styles/productList.module.css';
 
 function ProductList ({products, handleGetProducts}: ProductsResponseWithGet) {
 	const [isDone, setIsDone] = useState<boolean>(false)
@@ -14,12 +14,12 @@ function ProductList ({products, handleGetProducts}: ProductsResponseWithGet) {
 	return (
 		<div className={styles.dashboardBox}>
 			<div className={styles.buttonsControl}>
-				<Button disabled={!isDone} onClick={() => {handleIsDone(false)}}>On Going Projects</Button>
-				<Button disabled={isDone} onClick={() => {handleIsDone(true)}}>Finished Projects</Button>
+				<Button disabled={!isDone} onClick={() => {handleIsDone(false)}}>Products</Button>
+				<Button disabled={isDone} onClick={() => {handleIsDone(true)}}>Orders</Button>
 			</div>
-			<div className={styles.projectBox}>
+			<div className={styles.productBox}>
 				{
-					products.map((project: Product) =>{
+					products.map((product: Product) =>{
 							return <ProductCard handleGetProducts={handleGetProducts} product={product} />
 					})
 				}
@@ -28,4 +28,4 @@ function ProductList ({products, handleGetProducts}: ProductsResponseWithGet) {
 	)
 }
 
-export default ProjectList
+export default ProductList

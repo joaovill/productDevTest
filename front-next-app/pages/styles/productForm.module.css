@@ -1,10 +1,10 @@
-.projectForm{
+.productForm{
     padding: 0 10px 20px;
 }
-.projectForm .formItem{
+.productForm .formItem{
     margin: 5px 0;
 }
-.projectForm .errorMsg{
+.productForm .errorMsg{
     color: red;
     font-size: 12px;
 }

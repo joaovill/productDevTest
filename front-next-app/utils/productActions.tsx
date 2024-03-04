@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function fetchAllProducts(token: string): Promise<ProductsResponse> {
 	try {
-		const {data} = await axios.get('http://localhost:8000/projects', {
+		const {data} = await axios.get('http://localhost:8000/products', {
 			headers: ({
 				Authorization: 'Bearer ' + token
 			})
@@ -25,7 +25,7 @@ export async function fetchCreateProduct(token: string, formData: FormData): Pro
         headers: { Authorization: `Bearer ${token}` }
     };
 	try {
-		const { data } = await axios.post('http://localhost:8000/product', formData, config);
+		const { data } = await axios.post('http://localhost:8000/products', formData, config);
 
 		return {
             product: data
@@ -48,13 +48,13 @@ export async function fetchCreateProduct(token: string, formData: FormData): Pro
 	}
 }
 
-export async function fetchUpdateProduct(dataProject: UpdateProduct): Promise<ProductResponse> {
+export async function fetchUpdateProduct(dataProduct: UpdateProduct): Promise<ProductResponse> {
     const config = {
-        headers: { Authorization: `Bearer ${dataProject.token}` }
+        headers: { Authorization: `Bearer ${dataProduct.token}` }
     };
 	try {
 		const {data} = await axios.patch(
-            'http://localhost:8000/project/' + dataProject.id + '/done',
+            'http://localhost:8000/products/' + dataProduct.id + '/done',
 			{},
             config
 		);
@@ -80,13 +80,13 @@ export async function fetchUpdateProduct(dataProject: UpdateProduct): Promise<Pr
 	}
 }
 
-export async function fetchDeleteProject(dataProject: UpdateProduct): Promise<ProductResponse> {
+export async function fetchDeleteProduct(dataProduct: UpdateProduct): Promise<ProductResponse> {
     const config = {
-        headers: { Authorization: `Bearer ${dataProject.token}` }
+        headers: { Authorization: `Bearer ${dataProduct.token}` }
     };
 	try {
 		const {data} = await axios.delete(
-            'http://localhost:8000/project/' + dataProject.id + '/delete',
+            'http://localhost:8000/products/' + dataProduct.id + '/delete',
 			config
 		);
 

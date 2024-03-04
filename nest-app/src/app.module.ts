@@ -6,7 +6,7 @@ import { UserModule } from './user/user.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './authentication/guards/jwt-auth.guard';
-import { ProductModule } from './project/product.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [PrismaModule, UserModule, AuthenticationModule, ProductModule],
